@@ -9,8 +9,8 @@ router.get('/findAll', usuarioController.findAllUsersController);
 //Rotas POST
 router.post('/create', usuarioController.createUserController);
 router.post('/addAddress/:id', usuarioController.addUserAddressController);
-router.post('/addFavPizza/:id', usuarioController.addUserFavPizza);
-router.post('/addFavBebida/:id', usuarioController.addUserFavBebida);
+router.post('/addFavPizza/:id', usuarioController.addUserFavPizzaController);
+router.post('/addFavBebida/:id', usuarioController.addUserFavBebidaController);
 
 //Rotas PUT
 router.put('/update/:id', usuarioController.updateUserController);
@@ -18,7 +18,7 @@ router.put('/update/:id', usuarioController.updateUserController);
 //Rotas DELETE
 router.delete('/remove/:id', usuarioController.removeUserController);
 router.delete('/removeAddress', usuarioController.removeUserAddressController);
-router.delete('/removeFavPizza', usuarioController.removeUserFavPizza);
-router.delete('/removeFavBebida', usuarioController.removeUserFavBebida);
+router.delete('/removeFavPizza', usuarioController.removeUserFavPizzaController);
+router.delete('/removeFavBebida', usuarioController.removeUserFavBebidaController);
 
 module.exports = router;
