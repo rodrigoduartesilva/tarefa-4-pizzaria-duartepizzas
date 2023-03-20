@@ -21,6 +21,12 @@ const UsuarioSchema = new mongoose.Schema({
             createdAt: { type: Date, required: true },
         }
     ],
+    bebida_fav: [
+        {
+            _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'bebida' },
+            createdAt: { type: Date, required: true },
+        }
+    ],
     admin: { type: Boolean, required: true, default: false },
 });
 

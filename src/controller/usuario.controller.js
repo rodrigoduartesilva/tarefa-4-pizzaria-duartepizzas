@@ -80,6 +80,24 @@ const removeUserFavPizza = async (req, res) => {
     }
 }
 
+const addUserFavBebida = async (req, res) => {
+    try {
+
+    } catch (err) {
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
+    }
+}
+
+const removeUserFavBebida = async (req, res) => {
+    try {
+
+    } catch (err) {
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
+    }
+}
+
 module.exports = {
     findUserByIdController,
     findAllUsersController,
@@ -89,5 +107,7 @@ module.exports = {
     addUserAddressController,
     removeUserAddressController,
     addUserFavPizza,
-    removeUserFavPizza
+    removeUserFavPizza,
+    addUserFavBebida,
+    removeUserFavBebida
 }
