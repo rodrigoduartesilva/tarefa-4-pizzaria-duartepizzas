@@ -15,7 +15,7 @@ const UsuarioSchema = new mongoose.Schema({
         }
     ],
     createdAt: { type: Date, required: true, default: Date.now() },
-    pizzas_fav: [
+    /* pizzas_fav: [
         {
             _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'pizzas' },
             createdAt: { type: Date, required: true, default: Date.now() },
@@ -27,7 +27,7 @@ const UsuarioSchema = new mongoose.Schema({
             createdAt: { type: Date, required: true, default: Date.now() },
         }
     ],
-    admin: { type: Boolean, required: true, default: false },
+    admin: { type: Boolean, required: true, default: false }, */
 });
 
 const Usuario = mongoose.model('usuarios', UsuarioSchema);
