@@ -62,7 +62,7 @@ const removeUserAddressController = async (req, res) => {
     }
 }
 
-const addUserFavPizza = async (req, res) => {
+const addUserFavPizzaController = async (req, res) => {
     try {
 
     } catch (err) {
@@ -71,7 +71,7 @@ const addUserFavPizza = async (req, res) => {
     }
 }
 
-const removeUserFavPizza = async (req, res) => {
+const removeUserFavPizzaController = async (req, res) => {
     try {
 
     } catch (err) {
@@ -80,7 +80,7 @@ const removeUserFavPizza = async (req, res) => {
     }
 }
 
-const addUserFavBebida = async (req, res) => {
+const addUserFavBebidaController = async (req, res) => {
     try {
 
     } catch (err) {
@@ -89,7 +89,7 @@ const addUserFavBebida = async (req, res) => {
     }
 }
 
-const removeUserFavBebida = async (req, res) => {
+const removeUserFavBebidaController = async (req, res) => {
     try {
 
     } catch (err) {
@@ -106,8 +106,8 @@ module.exports = {
     removeUserController,
     addUserAddressController,
     removeUserAddressController,
-    addUserFavPizza,
-    removeUserFavPizza,
-    addUserFavBebida,
-    removeUserFavBebida
+    addUserFavPizzaController,
+    removeUserFavPizzaController,
+    addUserFavBebidaController,
+    removeUserFavBebidaController
 }
