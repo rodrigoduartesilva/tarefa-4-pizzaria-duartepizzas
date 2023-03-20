@@ -13,7 +13,6 @@ const findUserByIdController = async (req, res) => {
 
     } catch (err) {
         if (err.kind == 'ObjectId') {
-            console.log(err.kind == 'ObjectId');
             return res.status(400).send({ message: `O id informado está incorreto, tente novamente.` });
         }
 
@@ -65,11 +64,12 @@ const removeUserController = async (req, res) => {
     try {
         const deletedUser = await userService.removeUserService(req.params.id);
 
-        if (deletedUser.deletedCount > 0) {
-            res.status(200).send({ message: `Usuário deletado com sucesso.` })
-        } else {
-            res.status(404).send({ message: `Usuário não localizado em nossa base de dados.` });
-        }
+        res.status(200).send({ message: `Usuário deletado com sucesso.` })
+        /*  if (deletedUser.deletedCount > 0) {
+             res.status(200).send({ message: `Usuário deletado com sucesso.` })
+         } else {
+             res.status(404).send({ message: `Usuário não localizado em nossa base de dados.` });
+         } */
     } catch (err) {
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
