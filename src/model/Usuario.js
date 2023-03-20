@@ -11,20 +11,20 @@ const UsuarioSchema = new mongoose.Schema({
             numero: { type: Number, required: true },
             complemento: { type: String, required: false },
             CEP: { type: String, required: true },
-            createdAt: { type: Date, required: true }
+            createdAt: { type: Date, required: true, default: Date.now() }
         }
     ],
-    createdAt: { type: Date, required: true },
+    createdAt: { type: Date, required: true, default: Date.now() },
     pizzas_fav: [
         {
             _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'pizzas' },
-            createdAt: { type: Date, required: true },
+            createdAt: { type: Date, required: true, default: Date.now() },
         }
     ],
     bebida_fav: [
         {
             _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'bebidas' },
-            createdAt: { type: Date, required: true },
+            createdAt: { type: Date, required: true, default: Date.now() },
         }
     ],
     admin: { type: Boolean, required: true, default: false },
