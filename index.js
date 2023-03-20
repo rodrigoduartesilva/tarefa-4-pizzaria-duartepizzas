@@ -5,6 +5,7 @@ const connectToDatabase = require('./src/database/database');//Arquivo de conex�
 const usuario = require('./src/router/usuario.router');//Arquivo de rota do usuário
 const auth = require('./src/router/auth.router');//Arquivo de rota de autenticação
 const pizza = require('./src/router/pizza.router');//Arquivo de rota do produto pizza
+const categoria = require('./src/router/categoria.router');//Arquivo de rota da categoria
 
 const app = express();
 
@@ -17,6 +18,7 @@ connectToDatabase();//Função de conexão com o database
 app.use('/usuario', usuario);//Chamando as rotas do usuário
 app.use('/auth', auth);//Chamando a rota de autenticação
 app.use('/pizza', pizza);//Chamando a rota do produto pizza
+app.use('/categoria', categoria);//Chamando a rota da categoria
 
 app.get('/', (req, res) => {
     res.send({
