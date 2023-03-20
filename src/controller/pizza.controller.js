@@ -51,10 +51,31 @@ const deletePizzaController = async (req, res) => {
     }
 }
 
+const addCategoriaPizzaController = async (req, res) => {
+    try {
+        req.body.createdAt = new Date();
+        const categoria = await pizzaService.addCategoriaPizzaService(req.params.id, req.body);
+    } catch (err) {
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
+    }
+}
+
+const removeCategoriaPizzaController = async (req, res) => {
+    try {
+        const categoria = await pizzaService.removeCategoriaPizzaService(req.body);
+    } catch (err) {
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
+    }
+}
+
 module.exports = {
     findPizzaByIdController,
     findAllPizzasController,
     createPizzaController,
     updatePizzaController,
-    deletePizzaController
+    deletePizzaController,
+    addCategoriaPizzaController,
+    removeCategoriaPizzaController
 }
