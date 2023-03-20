@@ -23,7 +23,7 @@ const UsuarioSchema = new mongoose.Schema({
     ],
     bebida_fav: [
         {
-            _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'bebida' },
+            _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'bebidas' },
             createdAt: { type: Date, required: true },
         }
     ],
