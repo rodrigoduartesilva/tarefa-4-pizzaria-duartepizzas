@@ -6,6 +6,7 @@ const usuario = require('./src/router/usuario.router');//Arquivo de rota do usu�
 const auth = require('./src/router/auth.router');//Arquivo de rota de autenticação
 const pizza = require('./src/router/pizza.router');//Arquivo de rota do produto pizza
 const categoria = require('./src/router/categoria.router');//Arquivo de rota da categoria
+const carrinho = require('./src/router/carrinho.router');//Arquivo de rota do carrinho
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/usuario', usuario);//Chamando as rotas do usuário
 app.use('/auth', auth);//Chamando a rota de autenticação
 app.use('/pizza', pizza);//Chamando a rota do produto pizza
 app.use('/categoria', categoria);//Chamando a rota da categoria
+app.use('/carrinho', carrinho);//Chamando a rota do carrinho
 
 app.get('/', (req, res) => {
     res.send({
