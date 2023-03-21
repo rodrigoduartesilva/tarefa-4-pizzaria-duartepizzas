@@ -39,15 +39,15 @@ const addCategoriaPizzaService = (id, categoria) => {
     );
 }
 
-const removeCategoriaPizzaService = (categoria) => {
+const removeCategoriaPizzaService = (id, categoria) => {
     return Pizza.findOneAndUpdate(
         {
-            _id: categoria.id,
+            _id: id,
         },
         {
             $pull: {
                 categoria: {
-                    _id: categoria.idCategoria,
+                    _id: categoria._id,
                 },
             },
         },
