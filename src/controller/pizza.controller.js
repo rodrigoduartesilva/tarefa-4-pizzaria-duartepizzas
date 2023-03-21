@@ -23,7 +23,6 @@ const createPizzaController = async (req, res) => {
         const corpo = {
             ...req.body,
             userId: req.userId,
-            createdAt: new Date(),
         }
 
         res.send(await pizzaService.createPizzaService(corpo));
@@ -53,7 +52,6 @@ const deletePizzaController = async (req, res) => {
 
 const addCategoriaPizzaController = async (req, res) => {
     try {
-        req.body.createdAt = new Date();
         const categoria = await pizzaService.addCategoriaPizzaService(req.params.id, req.body);
         res.status(200).send(categoria);
     } catch (err) {
