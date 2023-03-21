@@ -45,6 +45,24 @@ const removeUserAddressService = (id, addressId) => {
             $pull: {
                 enderecos: {
                     _id: addressId
+                },
+            },
+        },
+        {
+            rawResult: true,
+        }
+    );
+}
+
+const addUserFavPizzaService = (id, pizza) => {
+    return Usuario.findOneAndUpdate(
+        {
+            _id: id,
+        },
+        {
+            $push: {
+                pizzas_fav: {
+                    _id: pizza._id,
                 }
             }
         },
@@ -54,12 +72,22 @@ const removeUserAddressService = (id, addressId) => {
     );
 }
 
-const addUserFavPizzaService = (id, pizzas) => {
-
-}
-
-const removeUserFavPizzaService = (pizzas) => {
-
+const removeUserFavPizzaService = (id, pizza) => {
+    return Usuario.findOneAndUpdate(
+        {
+            _id: id,
+        },
+        {
+            $pull: {
+                pizzas_fav: {
+                    _id: pizza._id,
+                }
+            }
+        },
+        {
+            rawResult: true,
+        }
+    );
 }
 
 const addUserFavBebidaService = (id, bebidas) => {

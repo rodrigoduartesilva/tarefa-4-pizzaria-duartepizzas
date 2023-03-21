@@ -15,20 +15,20 @@ const UsuarioSchema = new mongoose.Schema({
             createdAt: { type: Date, required: true, default: Date.now() }
         }
     ],
-    createdAt: { type: Date, required: true, default: Date.now() },
-    /* pizzas_fav: [
+    pizzas_fav: [
         {
-            _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'pizzas' },
-            createdAt: { type: Date, required: true, default: Date.now() },
+            _id: { type: mongoose.Schema.Types.ObjectId, unique: true, ref: 'pizzas' },
+            createdAt: { type: Date, default: Date.now() },
         }
     ],
     bebida_fav: [
         {
-            _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'bebidas' },
-            createdAt: { type: Date, required: true, default: Date.now() },
+            _id: { type: mongoose.Schema.Types.ObjectId, unique: true, ref: 'bebidas' },
+            createdAt: { type: Date, default: Date.now() },
         }
     ],
-    admin: { type: Boolean, required: true, default: false }, */
+    createdAt: { type: Date, required: true, default: Date.now() },
+    admin: { type: Boolean, required: true, default: false },
 });
 
 UsuarioSchema.pre('save', async function (next) {
