@@ -1,0 +1,684 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Pizzaria-Duarte",
+    "dateExported": "2023-03-22T09:51:19.835Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "User",
+            "containerId": "",
+            "created": "2023-03-20T12:56:45.541Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b2cadaee-550e-40e6-8d5c-0ea7221a0a26",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2023-03-20T16:04:19.241Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "Pizza",
+            "containerId": "",
+            "created": "2023-03-20T20:42:01.578Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "68bfd881-210e-4ba5-800a-667404692ddb",
+            "name": "Categoria",
+            "containerId": "",
+            "created": "2023-03-20T22:37:21.715Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "53bef4c8-968a-4a59-b4a6-8f5881a71b9f",
+            "name": "Carrinho",
+            "containerId": "",
+            "created": "2023-03-21T20:47:39.480Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "d0b7b467-560f-4401-8b56-9dd9c4fa1271",
+            "name": "Pedido",
+            "containerId": "",
+            "created": "2023-03-22T01:09:33.256Z",
+            "sortNum": 60000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "c1d90d3c-a046-4cf3-8cd1-e395854540ed",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "FindAll",
+            "url": "{{BaseURL}}{{Port}}/usuario/FindAll",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-03-20T12:57:14.445Z",
+            "modified": "2023-03-20T19:04:32.373Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f2e91aea-7f43-4f86-b709-cb35292c8733",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "FindById",
+            "url": "{{BaseURL}}{{Port}}/usuario/findById/6418758bc4b809cb0087d53c",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-03-20T13:01:34.614Z",
+            "modified": "2023-03-20T18:59:23.010Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "eb4254ea-a264-4aac-89a5-d331ce4b9249",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "Create",
+            "url": "{{BaseURL}}{{Port}}/usuario/create",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-03-20T13:06:21.848Z",
+            "modified": "2023-03-22T00:23:53.970Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Rodrigo Duarte\",\n  \"email\": \"rodrigo@email.com\",\n  \"senha\": \"senha123\",\n  \"imagem\": \"img.rodrigosite.com.br/rodrigo.jpg\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "eaa94ad9-4575-4d8a-af86-97053bdb8ba9",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "Update",
+            "url": "{{BaseURL}}{{Port}}/usuario/update/6418758bc4b809cb0087d53c",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2023-03-20T13:07:00.235Z",
+            "modified": "2023-03-20T15:18:50.705Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Rodrigo Duarte\",\n  \"email\": \"rodrigo@email.com\",\n  \"senha\": \"senha123\",\n  \"imagem\": \"img.rodrigoduartesite.com.br/rodrigoduarte.jpg\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0c0c832b-3717-46a4-aef3-c558d2b6012c",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "Delete",
+            "url": "{{BaseURL}}{{Port}}/usuario/remove/641874f8a764d03a68d56b94",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-03-20T13:07:21.921Z",
+            "modified": "2023-03-20T15:02:27.894Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "842a794c-2155-4ef2-8248-1ce782624de3",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "Add Address",
+            "url": "{{BaseURL}}{{Port}}/usuario/AddAddress/641863401b0e990842163b03",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-03-20T14:08:21.010Z",
+            "modified": "2023-03-20T14:16:55.756Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"rua\": \"Rua 28 de setembro\",\n  \"numero\": 10,\n  \"CEP\": \"21000-000\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1ab517f6-396a-44a2-9cfe-d5beb70c1e56",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "Rm Address",
+            "url": "{{BaseURL}}{{Port}}/usuario/removeAddress",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2023-03-20T14:18:42.315Z",
+            "modified": "2023-03-20T14:42:52.347Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"641863401b0e990842163b03\",\n  \"addressId\": \"641870d53c1eb2b63599ab11\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "234f763f-3d4f-439f-bf31-8027058ec0a9",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "b2cadaee-550e-40e6-8d5c-0ea7221a0a26",
+            "name": "Login",
+            "url": "{{BaseURL}}{{Port}}/auth/login",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-03-20T16:04:46.356Z",
+            "modified": "2023-03-22T00:25:35.189Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"samira@email.com\",\n  \"senha\": \"senha123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a3d2afbd-3d92-4ae7-b633-295e6cc33d2f",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "FindAll",
+            "url": "{{BaseURL}}{{Port}}/pizza/findAll",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-03-20T20:42:22.330Z",
+            "modified": "2023-03-20T20:44:03.808Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "77d36d9a-037f-41b7-bb02-b611b33a84e1",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "FindById",
+            "url": "{{BaseURL}}{{Port}}/pizza/find/64191de376d383c5974a6eae",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-03-20T20:44:50.773Z",
+            "modified": "2023-03-21T21:42:54.298Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "28d148b1-ed75-4289-98f1-4682eaa4afe1",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "53bef4c8-968a-4a59-b4a6-8f5881a71b9f",
+            "name": "FindAll",
+            "url": "{{BaseURL}}{{Port}}/carrinho/findAll",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-03-21T20:48:38.225Z",
+            "modified": "2023-03-21T21:28:33.294Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "236961b3-f2db-46c1-97fe-0f25fb6dc9e6",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "Create",
+            "url": "{{BaseURL}}{{Port}}/pizza/create",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-03-20T20:45:59.380Z",
+            "modified": "2023-03-21T22:14:27.353Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Portuguesa\",\n  \"descricao\": \"150 gramas de queijo muçarela ralado, 50 gramas de presunto em tiras, 1 tomate em rodelas, 1 ovo cozido picado, Meia cebola cortada em meia-lua, 25 gramas de molho de tomate, 3 azeitonas em rodelas, Orégano a gosto, Manjericão a gosto, Azeite a gosto.\",\n  \"precoUnitario\": 30.95,\n  \"imagem\": \"/pizza_portuguesa.jpg\",\n  \"codigoBarra\": 123422\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "442eb452-40c9-4b8c-b1e5-e230f5b7b2f8",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "Update",
+            "url": "{{BaseURL}}{{Port}}/pizza/update/6418c79706c595913d94d3f6",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2023-03-20T21:11:37.942Z",
+            "modified": "2023-03-20T21:13:01.139Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Pizza à Portuguesa\",\n  \"descricao\": \"Ingredientes: 150 gramas de queijo muçarela ralado, 50 gramas de presunto em tiras, 1 tomate em rodelas, 1 ovo cozido picado, Meia cebola cortada em meia-lua, 25 gramas de molho de tomate, 3 azeitonas em rodelas, Orégano a gosto, Manjericão a gosto, Azeite a gosto.\",\n  \"precoUnitario\": 35.90,\n  \"imagem\": \"/pizza_portuguesa.jpg\",\n  \"codigoBarra\": 123455\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "54d1d43a-e861-4c15-a757-2d74a599adcf",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "Delete",
+            "url": "{{BaseURL}}{{Port}}/pizza/delete/64191de376d383c5974a6eae",
+            "method": "DELETE",
+            "sortNum": 140000,
+            "created": "2023-03-20T21:13:31.694Z",
+            "modified": "2023-03-21T21:45:15.546Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f69ef9d5-e875-40c2-bb7f-bfb2abb95e5c",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "68bfd881-210e-4ba5-800a-667404692ddb",
+            "name": "FindAll",
+            "url": "{{BaseURL}}{{Port}}/categoria/findAll",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-03-20T22:37:43.905Z",
+            "modified": "2023-03-20T22:39:14.472Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "15ec754f-e8f8-4eaa-941e-d578800673f8",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "68bfd881-210e-4ba5-800a-667404692ddb",
+            "name": "FindById",
+            "url": "{{BaseURL}}{{Port}}/categoria/find/6418e19363a5aa75d7bdadd5",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2023-03-20T22:37:53.390Z",
+            "modified": "2023-03-20T22:47:19.236Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "6719feac-2721-4eac-a6f8-89bc0763e2fc",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "68bfd881-210e-4ba5-800a-667404692ddb",
+            "name": "Create",
+            "url": "{{BaseURL}}{{Port}}/categoria/create",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2023-03-20T22:39:27.370Z",
+            "modified": "2023-03-21T22:20:11.256Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Mista Salgada/Doce\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "658fa315-c61e-4234-a121-73d711250e5d",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "68bfd881-210e-4ba5-800a-667404692ddb",
+            "name": "Update",
+            "url": "{{BaseURL}}{{Port}}/categoria/update/6418e19363a5aa75d7bdadd5",
+            "method": "PUT",
+            "sortNum": 180000,
+            "created": "2023-03-20T22:45:03.779Z",
+            "modified": "2023-03-20T22:45:59.131Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nome\": \"Mista Salgada/Doce/Sorvete\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "257eac90-3031-48d5-a822-c0d1ad978cac",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "68bfd881-210e-4ba5-800a-667404692ddb",
+            "name": "Delete",
+            "url": "{{BaseURL}}{{Port}}/categoria/delete/6418e2f063a5aa75d7bdade0",
+            "method": "DELETE",
+            "sortNum": 190000,
+            "created": "2023-03-20T22:46:24.581Z",
+            "modified": "2023-03-21T21:42:05.634Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "85b8c4b5-c856-41b3-9076-36db9aeba8ce",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "Add categoria",
+            "url": "{{BaseURL}}{{Port}}/pizza/addCategoria/641a2591199cc1bcbe543e55",
+            "method": "POST",
+            "sortNum": 200000,
+            "created": "2023-03-20T23:34:22.378Z",
+            "modified": "2023-03-21T22:24:11.006Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": \"641a2d81d1dc25b05e634854\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "300f8bdb-faab-452e-a9e1-541156b5b696",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "272619ba-1f33-4966-a240-e69d0ba742a3",
+            "name": "Remove categoria",
+            "url": "{{BaseURL}}{{Port}}/pizza/removeCategoria/64191de376d383c5974a6eae",
+            "method": "DELETE",
+            "sortNum": 210000,
+            "created": "2023-03-20T23:35:08.124Z",
+            "modified": "2023-03-21T03:07:56.750Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": \"6418e15a63a5aa75d7bdadc3\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "462394fa-5fbd-4299-af2a-62331295ad29",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "53bef4c8-968a-4a59-b4a6-8f5881a71b9f",
+            "name": "FindById",
+            "url": "{{BaseURL}}{{Port}}/carrinho/find/641a1b4f06439be4c259970a",
+            "method": "GET",
+            "sortNum": 220000,
+            "created": "2023-03-21T20:47:56.383Z",
+            "modified": "2023-03-21T21:03:33.755Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "a2182430-9b3c-4ef0-bdd5-e3060e8c1f3d",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "53bef4c8-968a-4a59-b4a6-8f5881a71b9f",
+            "name": "Create",
+            "url": "{{BaseURL}}{{Port}}/carrinho/create",
+            "method": "POST",
+            "sortNum": 240000,
+            "created": "2023-03-21T20:49:33.792Z",
+            "modified": "2023-03-21T21:27:43.441Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"produtos\":[\n      {\"_id\": \"64191de376d383c5974a6eae\", \"quantidade\": 5}\n    ],\n    \"precoTotal\": 500.20\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "98a538df-aeb6-40e6-aa2b-e7255ee11c29",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "53bef4c8-968a-4a59-b4a6-8f5881a71b9f",
+            "name": "Update",
+            "url": "{{BaseURL}}{{Port}}/carrinho/update/6418758bc4b809cb0087d53c",
+            "method": "PUT",
+            "sortNum": 250000,
+            "created": "2023-03-21T21:28:46.316Z",
+            "modified": "2023-03-21T21:33:00.459Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"produtos\": [\n      {\n        \"_id\": \"64191de376d383c5974a6eae\",\n        \"quantidade\": 10\n      }\n    ],\n    \"precoTotal\": 1100.00\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "cf250e4e-7fa4-457a-8415-0cb7dc5e4a52",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "53bef4c8-968a-4a59-b4a6-8f5881a71b9f",
+            "name": "Delete",
+            "url": "{{BaseURL}}{{Port}}/carrinho/delete/64191de376d383c5974a6eae",
+            "method": "DELETE",
+            "sortNum": 260000,
+            "created": "2023-03-21T21:35:59.347Z",
+            "modified": "2023-03-21T21:36:47.905Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b056c1cb-7128-4d1b-878a-95a80449e445",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "Add Fav Pizza",
+            "url": "{{BaseURL}}{{Port}}/usuario/addFavPizza/641a4a844f5d499016992007",
+            "method": "POST",
+            "sortNum": 270000,
+            "created": "2023-03-21T23:02:46.875Z",
+            "modified": "2023-03-22T00:30:19.636Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": \"641a2591199cc1bcbe543e55\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "654e42a0-6ef9-417f-a172-32a8dd9792c8",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "5cd92122-9ac3-4f26-b563-7cb8c546ac27",
+            "name": "Rm Fav Pizza",
+            "url": "{{BaseURL}}{{Port}}/usuario/removeFavPizza/6418758bc4b809cb0087d53c",
+            "method": "DELETE",
+            "sortNum": 280000,
+            "created": "2023-03-21T23:03:09.362Z",
+            "modified": "2023-03-21T23:33:51.924Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": \"641a2591199cc1bcbe543e55\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "04ab6c6b-482d-4f9a-9cc6-bb44a820719a",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "d0b7b467-560f-4401-8b56-9dd9c4fa1271",
+            "name": "FindAll",
+            "url": "{{BaseURL}}{{Port}}/pedido/findAll",
+            "method": "GET",
+            "sortNum": 290000,
+            "created": "2023-03-22T01:09:43.882Z",
+            "modified": "2023-03-22T01:17:37.042Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "366305cc-9dc0-43be-9eef-6c8951b94fa3",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "d0b7b467-560f-4401-8b56-9dd9c4fa1271",
+            "name": "FindById",
+            "url": "{{BaseURL}}{{Port}}/pedido/find/641a569842acfb9b55c53c81",
+            "method": "GET",
+            "sortNum": 300000,
+            "created": "2023-03-22T01:10:06.482Z",
+            "modified": "2023-03-22T01:18:25.585Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "4564b141-89e2-4779-b323-253fe077e6eb",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "d0b7b467-560f-4401-8b56-9dd9c4fa1271",
+            "name": "Create",
+            "url": "{{BaseURL}}{{Port}}/pedido/create",
+            "method": "POST",
+            "sortNum": 310000,
+            "created": "2023-03-22T01:11:00.231Z",
+            "modified": "2023-03-22T01:14:32.280Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"produtos\":[\n      {\"_id\": \"64191de376d383c5974a6eae\", \"quantidade\": 5}\n    ],\n    \"precoTotal\": 500.20,\n    \"concluido\": false\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "24f317f1-24c1-43e5-8f31-e9ace671611a",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "d0b7b467-560f-4401-8b56-9dd9c4fa1271",
+            "name": "Delete",
+            "url": "{{BaseURL}}{{Port}}/pedido/delete/641a569842acfb9b55c53c81",
+            "method": "DELETE",
+            "sortNum": 320000,
+            "created": "2023-03-22T01:11:18.380Z",
+            "modified": "2023-03-22T01:20:13.416Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e2af170a-c8b5-44e6-b0d0-2db16b3528b9",
+            "colId": "a4941e07-e1e2-45a8-b26e-f51aa2bb5e30",
+            "containerId": "d0b7b467-560f-4401-8b56-9dd9c4fa1271",
+            "name": "UpdateStatus",
+            "url": "{{BaseURL}}{{Port}}/pedido/updateStatus/641a572142acfb9b55c53c84",
+            "method": "PATCH",
+            "sortNum": 330000,
+            "created": "2023-03-22T01:11:58.413Z",
+            "modified": "2023-03-22T09:48:31.959Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "client": "Thunder Client",
+    "environmentName": "Pizzaria-Duarte",
+    "dateExported": "2023-03-22T09:55:04.272Z",
+    "version": "1.0",
+    "variables": [
+        {
+            "name": "BaseURL",
+            "value": "http://localhost:"
+        },
+        {
+            "name": "Port",
+            "value": "3000"
+        },
+        {
+            "name": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWE0YTg0NGY1ZDQ5OTAxNjk5MjAwNyIsImlhdCI6MTY3OTQ0NDczNSwiZXhwIjoxNjc5NTMxMTM1fQ.akozWwQ0bw3AEdbI_9nFOo634hUMa910N7EYxcemW6w"
+        }
+    ]
+}
