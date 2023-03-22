@@ -1,6 +1,5 @@
 const userService = require('../service/usuario.service');
 
-
 const findUserByIdController = async (req, res) => {
     try {
         const user = await userService.findUserByIdService(req.params.id);
