@@ -5,6 +5,7 @@ const connectToDatabase = require('./src/database/database');//Arquivo de conex�
 const usuario = require('./src/router/usuario.router');//Arquivo de rota do usuário
 const auth = require('./src/router/auth.router');//Arquivo de rota de autenticação
 const pizza = require('./src/router/pizza.router');//Arquivo de rota do produto pizza
+const bebida = require('./src/router/bebida.router');//Arquivo de rota do produto bebida
 const categoria = require('./src/router/categoria.router');//Arquivo de rota da categoria
 const carrinho = require('./src/router/carrinho.router');//Arquivo de rota do carrinho
 const pedido = require('./src/router/pedido.router');//Arquivo de rota do pedido
@@ -20,6 +21,7 @@ connectToDatabase();//Função de conexão com o database
 app.use('/usuario', usuario);//Chamando as rotas do usuário
 app.use('/auth', auth);//Chamando a rota de autenticação
 app.use('/pizza', pizza);//Chamando a rota do produto pizza
+app.use('/bebida', bebida);//Chamando a rota do produto bebida
 app.use('/categoria', categoria);//Chamando a rota da categoria
 app.use('/carrinho', carrinho);//Chamando a rota do carrinho
 app.use('/pedido', pedido);//Chamando a rota do pedido
