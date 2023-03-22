@@ -1,27 +1,38 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 
 const validaUsuario = (req, res, next) => {
+    let erros = [];//array para acumular os erros
+
     if (!req.body.nome) {
-        return res.status(400).send({ message: `O campo 'nome' precisa ser preenchido.` });
+        erros.push('nome');
     }
 
     if (!req.body.email) {
-        return res.status(400).send({ message: `O campo 'email' precisa ser preenchido.` });
+        erros.push('email');
     }
 
     if (!req.body.senha) {
-        return res.status(400).send({ message: `O campo 'senha' precisa ser preenchido.` });
+        erros.push('senha');
     }
 
     if (!req.body.imagem) {
-        return res.status(400).send({ message: `O campo 'imagem' precisa ser preenchido.` });
+        erros.push('imagem');
     }
 
-    if (!req.body.admin) {
-        return res.status(400).send({ message: `O campo 'admin' precisa ser preenchido.` });
+    if (req.body.admin == undefined) {
+        erros.push('admin');
     }
 
-    return next();
+    //Teste de quantos erros ocorreram
+    if (erros.length == 0) {
+        return next();
+    } else {
+        if (erros.length > 1) {
+            return res.status(400).send({ message: `Os campos ${erros} precisam ser preenchidos.` });
+        } else {
+            return res.status(400).send({ message: `O campo ${erros} precisa ser preenchido.` });
+        }
+    }
 }
 
 const validaPizza = (req, res, next) => {
