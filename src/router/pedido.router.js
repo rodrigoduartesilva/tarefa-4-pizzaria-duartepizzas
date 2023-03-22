@@ -10,4 +10,6 @@ router.post('/create', authMiddleware, pedidoController.createPedidoController);
 
 router.delete('/delete/:id', authMiddleware, pedidoController.deletePedidoController);
 
+router.patch('/updateStatus/:id', authMiddleware, pedidoController.updateStatusPedidoController);
+
 module.exports = router;

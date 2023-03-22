@@ -16,8 +16,17 @@ const deletePedidoService = (id) => {
     return Pedido.findByIdAndRemove(id);
 }
 
-const updateStatusService = (id) => {
-
+const updateStatusPedidoService = (id) => {
+    return Pedido.findOneAndUpdate(
+        {
+            _id: id
+        },
+        {
+            $set: {
+                concluido: true
+            }
+        }
+    );
 }
 
 module.exports = {
@@ -25,5 +34,5 @@ module.exports = {
     findAllPedidosService,
     createPedidoService,
     deletePedidoService,
-    updateStatusService
+    updateStatusPedidoService
 }
