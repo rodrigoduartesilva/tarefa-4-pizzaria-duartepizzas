@@ -25,7 +25,7 @@ const createPizzaController = async (req, res) => {
             userId: req.userId,
         }
 
-        res.send(await pizzaService.createPizzaService(corpo));
+        res.status(201).send(await pizzaService.createPizzaService(corpo));
     } catch (err) {
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
