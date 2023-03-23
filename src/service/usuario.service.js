@@ -91,11 +91,39 @@ const removeUserFavPizzaService = (id, pizza) => {
 }
 
 const addUserFavBebidaService = (id, bebida) => {
-
+    return Usuario.findOneAndUpdate(
+        {
+            _id: id,
+        },
+        {
+            $push: {
+                bebidas_fav: {
+                    _id: bebida._id,
+                }
+            }
+        },
+        {
+            rawResult: true,
+        }
+    );
 }
 
 const removeUserFavBebidaService = (id, bebida) => {
-
+    return Usuario.findOneAndUpdate(
+        {
+            _id: id,
+        },
+        {
+            $pull: {
+                bebidas_fav: {
+                    _id: bebida._id,
+                }
+            }
+        },
+        {
+            rawResult: true,
+        }
+    );
 }
 
 module.exports = {
