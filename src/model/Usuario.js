@@ -21,7 +21,7 @@ const UsuarioSchema = new mongoose.Schema({
             createdAt: { type: Date, default: Date.now() },
         }
     ],
-    bebida_fav: [
+    bebidas_fav: [
         {
             _id: { type: mongoose.Schema.Types.ObjectId, unique: true, ref: 'bebidas' },
             createdAt: { type: Date, default: Date.now() },
