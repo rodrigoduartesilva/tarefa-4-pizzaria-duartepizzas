@@ -20,6 +20,11 @@ const findAllPizzasController = async (req, res) => {
 
 const createPizzaController = async (req, res) => {
     try {
+
+        if (req.body.categorias === undefined) {
+            req.body.categorias = { default: undefined }
+        };
+
         const corpo = {
             ...req.body,
             userId: req.userId,
