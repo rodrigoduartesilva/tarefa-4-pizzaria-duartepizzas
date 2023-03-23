@@ -17,13 +17,13 @@ const UsuarioSchema = new mongoose.Schema({
     ],
     pizzas_fav: [
         {
-            _id: { type: mongoose.Schema.Types.ObjectId, unique: true, ref: 'pizzas' },
+            _id: { type: mongoose.Schema.Types.ObjectId, unique: false, ref: 'pizzas' },
             createdAt: { type: Date, default: Date.now() },
         }
     ],
     bebida_fav: [
         {
-            _id: { type: mongoose.Schema.Types.ObjectId, unique: true, ref: 'bebidas' },
+            _id: { type: mongoose.Schema.Types.ObjectId, unique: false, ref: 'bebidas' },
             createdAt: { type: Date, default: Date.now() },
         }
     ],
@@ -31,12 +31,6 @@ const UsuarioSchema = new mongoose.Schema({
     admin: { type: Boolean, required: true, default: false },
 });
 
-const RootSchema = new mongoose.Schema({
-    options: {
-        type: [UsuarioSchema.pizzas_fav, UsuarioSchema.bebida_fav],
-        default: undefined
-    }
-})
 
 UsuarioSchema.pre('save', async function (next) {
     if (this.senha) {

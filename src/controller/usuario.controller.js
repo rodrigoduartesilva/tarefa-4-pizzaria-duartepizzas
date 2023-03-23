@@ -31,6 +31,15 @@ const findAllUsersController = async (req, res) => {
 
 const createUserController = async (req, res) => {
     try {
+
+        if (req.body.pizzas_fav === undefined) {
+            req.body.pizzas_fav = { default: undefined }
+        };
+
+        if (req.body.bebida_fav === undefined) {
+            req.body.bebida_fav = { default: undefined };
+        }
+
         return res.status(201).send(await userService.createUserService(req.body));
     } catch (err) {
         console.log(`erro: ${err.message}`);
