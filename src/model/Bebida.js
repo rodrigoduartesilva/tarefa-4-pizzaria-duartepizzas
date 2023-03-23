@@ -16,4 +16,4 @@ const BebidaSchema = new mongoose.Schema({
 
 const Bebida = mongoose.model('bebidas', BebidaSchema);
 
-module.exports = Pizza;
+module.exports = Bebida;

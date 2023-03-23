@@ -1,81 +1,18 @@
-const bebidaService = require('../service/bebida.service');
+const router = require('express').Router();
 
-const findBebidaByIdController = async (req, res) => {
-    try {
-        res.send(await bebidaService.findBebidaByIdService(req.params.id));
-    } catch (err) {
-        console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
-    }
-}
+const bebidaController = require('../controller/bebida.controller');
+const authMiddleware = require('../middleware/auth.middleware');
+const { validaBebida, validaId } = require('../middleware/validacao.middleware');
 
-const findAllBebidasController = async (req, res) => {
-    try {
-        res.send(await bebidaService.findAllBebidasService());
-    } catch (err) {
-        console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
-    }
-}
+router.get('/find/:id', authMiddleware, validaId, bebidaController.findBebidaByIdController);
+router.get('/findAll', authMiddleware, bebidaController.findAllBebidasController);
 
-const createBebidaController = async (req, res) => {
-    try {
-        const corpo = {
-            ...req.body,
-            userId: req.userId,
-        }
+router.post('/create', authMiddleware, validaBebida, bebidaController.createBebidaController);
+router.post('/addCategoria/:id', authMiddleware, validaId, bebidaController.addCategoriaBebidaController);
 
-        res.status(201).send(await bebidaService.createBebidaService(corpo));
-    } catch (err) {
-        console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
-    }
-}
+router.put('/update/:id', authMiddleware, validaId, validaBebida, bebidaController.updateBebidaController);
 
-const updateBebidaController = async (req, res) => {
-    try {
-        res.send(await bebidaService.updateBebidaService(req.params.id, req.body));
-    } catch (err) {
-        console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
-    }
-}
+router.delete('/delete/:id', authMiddleware, validaId, bebidaController.deleteBebidaController);
+router.delete('/removeCategoria/:id', authMiddleware, bebidaController.removeCategoriaBebidaController);
 
-const deleteBebidaController = async (req, res) => {
-    try {
-        res.send(await bebidaService.deleteBebidaService(req.params.id));
-    } catch (err) {
-        console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
-    }
-}
-
-const addCategoriaBebidaController = async (req, res) => {
-    try {
-        const categoria = await bebidaService.addCategoriaBebidaService(req.params.id, req.body);
-        res.status(200).send(categoria);
-    } catch (err) {
-        console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
-    }
-}
-
-const removeCategoriaBebidaController = async (req, res) => {
-    try {
-        const categoria = await bebidaService.removeCategoriaBebidaService(req.params.id, req.body);
-        res.status(200).send(categoria);
-    } catch (err) {
-        console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
-    }
-}
-
-module.exports = {
-    findBebidaByIdController,
-    findAllBebidasController,
-    createBebidaController,
-    updateBebidaController,
-    deleteBebidaController,
-    addCategoriaBebidaController,
-    removeCategoriaBebidaController
-}
+module.exports = router;

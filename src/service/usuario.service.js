@@ -90,11 +90,11 @@ const removeUserFavPizzaService = (id, pizza) => {
     );
 }
 
-const addUserFavBebidaService = (id, bebidas) => {
+const addUserFavBebidaService = (id, bebida) => {
 
 }
 
-const removeUserFavBebidaService = (bebidas) => {
+const removeUserFavBebidaService = (id, bebida) => {
 
 }
 
