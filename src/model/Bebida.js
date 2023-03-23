@@ -8,7 +8,7 @@ const BebidaSchema = new mongoose.Schema({
     codigoBarra: { type: Number, unique: true, required: true },
     categorias: [
         {
-            _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: 'categorias' },
+            _id: { type: mongoose.Schema.Types.ObjectId, required: false, unique: false, ref: 'categorias' },
             createdAt: { type: Date, required: true, default: Date.now() }
         },
     ],
