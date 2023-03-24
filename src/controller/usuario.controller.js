@@ -120,7 +120,20 @@ const addUserFavPizzaController = async (req, res) => {
 
 const removeUserFavPizzaController = async (req, res) => {
     try {
-        res.status(201).send(await userService.removeUserFavPizzaService(req.params.id, req.body));
+        const pizzasFavRm = await userService.removeUserFavPizzaService(req.params.id, req.body);
+        let found = false;
+
+        pizzasFavRm.value.pizzas_fav.map((valor, chave) => {
+            if (valor._id == req.body._id) {
+                found = true;
+            }
+        });
+
+        if (found) {
+            res.status(201).send({ message: `Pizza favorita removida com sucesso.` });
+        } else {
+            res.status(400).send({ message: `O item favorito não consta na base de dados para o Id ${req.params.id} informado, tente novamente.` });
+        }
     } catch (err) {
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
