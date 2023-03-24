@@ -97,7 +97,7 @@ const addUserFavBebidaService = (id, bebida) => {
         },
         {
             $push: {
-                bebidas_fav: {
+                bebida_fav: {
                     _id: bebida._id,
                 }
             }
@@ -115,7 +115,7 @@ const removeUserFavBebidaService = (id, bebida) => {
         },
         {
             $pull: {
-                bebidas_fav: {
+                bebida_fav: {
                     _id: bebida._id,
                 }
             }
