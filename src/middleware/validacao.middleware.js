@@ -15,6 +15,10 @@ const validaUsuario = (req, res, next) => {
         erros.push('senha');
     }
 
+    if (!req.body.cpf) {
+        erros.push('cpf');
+    }
+
     if (!req.body.imagem) {
         erros.push('imagem');
     }
