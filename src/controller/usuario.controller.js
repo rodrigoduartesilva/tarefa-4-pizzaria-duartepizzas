@@ -49,7 +49,7 @@ const createUserController = async (req, res) => {
 
 const updateUserController = async (req, res) => {
     try {
-        return res.send(await userService.updateUserService(req.params.id, req.body));
+        return res.status(200).send(await userService.updateUserService(req.params.id, req.body));
     } catch (err) {
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
@@ -61,9 +61,9 @@ const removeUserController = async (req, res) => {
         const deletedUser = await userService.removeUserService(req.params.id);
 
         if (deletedUser == null) {
-            res.status(404).send({ message: `Usuário não localizado em nossa base de dados.` });
+            return res.status(404).send({ message: `Usuário não localizado em nossa base de dados.` });
         } else {
-            res.status(200).send({ message: `Usuário deletado com sucesso.` });
+            return res.status(200).send({ message: `Usuário deletado com sucesso.` });
         }
     } catch (err) {
         console.log(`erro: ${err.message}`);
@@ -76,9 +76,9 @@ const addUserAddressController = async (req, res) => {
         const endereco = await userService.addUserAddressService(req.params.id, req.body);
 
         if (endereco.value == null) {
-            res.status(400).send({ message: `Algo deu errado com o endereço, tente novamente.` });
+            return res.status(400).send({ message: `Algo deu errado com o endereço, tente novamente.` });
         } else {
-            res.status(201).send({ message: `Endereço adicionado com sucesso.` });
+            return res.status(201).send({ message: `Endereço adicionado com sucesso.` });
         }
 
     } catch (err) {
@@ -99,9 +99,9 @@ const removeUserAddressController = async (req, res) => {
         });
 
         if (found) {
-            res.status(200).send({ message: `Endereço removido com sucesso.` });
+            return res.status(200).send({ message: `Endereço removido com sucesso.` });
         } else {
-            res.status(400).send({ message: `O endereço não consta na base de dados para o Id ${req.body.id} informado, tente novamente.` });
+            return res.status(400).send({ message: `O endereço não consta na base de dados para o Id ${req.body.id} informado, tente novamente.` });
         }
     } catch (err) {
         console.log(`erro: ${err.message}`);
@@ -114,9 +114,9 @@ const addUserFavPizzaController = async (req, res) => {
         const pizzaFavAdd = await userService.addUserFavPizzaService(req.params.id, req.body);
 
         if (pizzaFavAdd.value == null) {
-            res.status(400).send({ message: `Algo deu errado em adicionar uma pizza como favorita, tente novamente.` });
+            return res.status(400).send({ message: `Algo deu errado em adicionar uma pizza como favorita, tente novamente.` });
         } else {
-            res.status(201).send({ message: `Pizza favorita adicionada com sucesso.` });
+            return res.status(201).send({ message: `Pizza favorita adicionada com sucesso.` });
         }
     } catch (err) {
         console.log(`erro: ${err.message}`);
@@ -136,9 +136,9 @@ const removeUserFavPizzaController = async (req, res) => {
         });
 
         if (found) {
-            res.status(201).send({ message: `Pizza favorita removida com sucesso.` });
+            return res.status(201).send({ message: `Pizza favorita removida com sucesso.` });
         } else {
-            res.status(400).send({ message: `O item favorito não consta na base de dados para o Id ${req.params.id} informado, tente novamente.` });
+            return res.status(400).send({ message: `O item favorito não consta na base de dados para o Id ${req.params.id} informado, tente novamente.` });
         }
     } catch (err) {
         console.log(`erro: ${err.message}`);
@@ -151,9 +151,9 @@ const addUserFavBebidaController = async (req, res) => {
         const bebidaFavAdd = await userService.addUserFavBebidaService(req.params.id, req.body);
 
         if (bebidaFavAdd.value == null) {
-            res.status(400).send({ message: `Algo deu errado em adicionar uma bebida como favorita, tente novamente.` });
+            return res.status(400).send({ message: `Algo deu errado em adicionar uma bebida como favorita, tente novamente.` });
         } else {
-            res.status(201).send({ message: `Bebida favorita adicionada com sucesso.` });
+            return res.status(201).send({ message: `Bebida favorita adicionada com sucesso.` });
         }
     } catch (err) {
         console.log(`erro: ${err.message}`);
@@ -173,9 +173,9 @@ const removeUserFavBebidaController = async (req, res) => {
         });
 
         if (found) {
-            res.status(201).send({ message: `Bebida favorita removida com sucesso.` });
+            return res.status(201).send({ message: `Bebida favorita removida com sucesso.` });
         } else {
-            res.status(400).send({ message: `O item favorito não consta na base de dados para o Id ${req.params.id} informado, tente novamente.` });
+            return res.status(400).send({ message: `O item favorito não consta na base de dados para o Id ${req.params.id} informado, tente novamente.` });
         }
     } catch (err) {
         console.log(`erro: ${err.message}`);
