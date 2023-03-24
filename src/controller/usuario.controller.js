@@ -111,7 +111,13 @@ const removeUserAddressController = async (req, res) => {
 
 const addUserFavPizzaController = async (req, res) => {
     try {
-        res.status(201).send(await userService.addUserFavPizzaService(req.params.id, req.body));
+        const pizzaFavAdd = await userService.addUserFavPizzaService(req.params.id, req.body);
+
+        if (pizzaFavAdd.value == null) {
+            res.status(400).send({ message: `Algo deu errado em adicionar uma pizza como favorita, tente novamente.` });
+        } else {
+            res.status(201).send({ message: `Pizza favorita adicionada com sucesso.` });
+        }
     } catch (err) {
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
@@ -142,7 +148,13 @@ const removeUserFavPizzaController = async (req, res) => {
 
 const addUserFavBebidaController = async (req, res) => {
     try {
+        const bebidaFavAdd = await userService.addUserFavBebidaService(req.params.id, req.body);
 
+        if (bebidaFavAdd.value == null) {
+            res.status(400).send({ message: `Algo deu errado em adicionar uma bebida como favorita, tente novamente.` });
+        } else {
+            res.status(201).send({ message: `Bebida favorita adicionada com sucesso.` });
+        }
     } catch (err) {
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
@@ -151,7 +163,20 @@ const addUserFavBebidaController = async (req, res) => {
 
 const removeUserFavBebidaController = async (req, res) => {
     try {
+        const bebidaFavRm = await userService.removeUserFavBebidaService(req.params.id, req.body);
+        let found = false;
 
+        bebidaFavRm.value.bebida_fav.map((valor, chave) => {
+            if (valor._id == req.body._id) {
+                found = true;
+            }
+        });
+
+        if (found) {
+            res.status(201).send({ message: `Bebida favorita removida com sucesso.` });
+        } else {
+            res.status(400).send({ message: `O item favorito não consta na base de dados para o Id ${req.params.id} informado, tente novamente.` });
+        }
     } catch (err) {
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: `Erro inesperado, tente novamente.` });
