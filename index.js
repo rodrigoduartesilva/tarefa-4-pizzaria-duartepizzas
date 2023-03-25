@@ -9,6 +9,7 @@ const bebida = require('./src/router/bebida.router');//Arquivo de rota do produt
 const categoria = require('./src/router/categoria.router');//Arquivo de rota da categoria
 const carrinho = require('./src/router/carrinho.router');//Arquivo de rota do carrinho
 const pedido = require('./src/router/pedido.router');//Arquivo de rota do pedido
+const docs = require('./src/router/docs.router');//Arquivo de rota do docs
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/bebida', bebida);//Chamando a rota do produto bebida
 app.use('/categoria', categoria);//Chamando a rota da categoria
 app.use('/carrinho', carrinho);//Chamando a rota do carrinho
 app.use('/pedido', pedido);//Chamando a rota do pedido
+app.use('/docs', docs);//Chamando a rota do docs
 
 app.get('/', (req, res) => {
     res.send({

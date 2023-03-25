@@ -1,0 +1,48 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Pizzaria Duarte Pizzas",
+        "description": "API completa de uma pizzaria contendo o CRUD das rotas.",
+        "contact": {
+            "name": "Rodrigo Duarte",
+            "email": "rodrigoduartesilva@yahoo.com.br"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "API de Teste LOCAL"
+        }
+    ],
+    "paths": {
+        "/usuario/findAll": {
+            "get":{
+                "summary": "Lista todos os usuários da API.",
+                "description": "Rota responsável por listar todos os usuários da API.",
+                "tags": ["Usuario"],
+                "responses": {
+                    "200":{
+                        "description": "Ok, tarefa realizada com sucesso."
+                    },
+                    "401":{
+                        "description": "Unauthorized, erro de autenticação. Verificar se há algum problema com o token."
+                    },
+                    "404":{
+                        "description": "Not Found, nenhum usuário encontrado"
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor."
+                    }
+                }
+            }
+        },
+        "/usuario/find": {
+            "get":{
+                "summary": "Lista um usuário referente a um Id informado na API.",
+                "description": "Rota responsável por listar um usuário que corresponde a um Id informado na API.",
+                "tags": ["Usuario"]
+            }
+        }
+    }
+}
