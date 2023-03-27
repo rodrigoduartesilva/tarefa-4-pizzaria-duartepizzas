@@ -571,7 +571,7 @@ const updatePizzaController = async (req, res) => {
 
 | Código | Resposta                                                                    |
 | ------ | --------------------------------------------------------------------------- |
-| 200    | Atualiza um tipo/sabor de pizza cadastrada                                  |
+| 200    | Deleta um tipo/sabor de pizza cadastrada                                    |
 | 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
 | 500    | Erro interno                                                                |
 
@@ -656,11 +656,9 @@ const removeCategoriaPizzaController = async (req, res) => {
         .status(200)
         .send({ message: `Categoria deletada com sucesso.` });
     } else {
-      return res
-        .status(404)
-        .send({
-          message: `Categoria não adicionada ao sabor de pizza informada em nossa base de dados.`,
-        });
+      return res.status(404).send({
+        message: `Categoria não adicionada ao sabor de pizza informada em nossa base de dados.`,
+      });
     }
   } catch (err) {
     console.log(`erro: ${err.message}`);
@@ -673,8 +671,718 @@ const removeCategoriaPizzaController = async (req, res) => {
 
 ### Categoria
 
+Rota de localização/criação/atualização/remoção das categorias de pizzas e bebidas cadastradas na aplicação.
+
+#### /findAll
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna todas as categorias cadastradas                                     |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findAllCategoriaController:
+
+```javascript
+const findAllCategoriaController = async (req, res) => {
+  try {
+    if ((await categoriaService.findAllCategoriaService()) == "") {
+      return res
+        .status(404)
+        .send("Não há categorias ativas em nossa base de dados.");
+    } else {
+      return res
+        .status(200)
+        .send(await categoriaService.findAllCategoriaService());
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /findById
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna uma categoria cadastrada atraves de um Id informado                 |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findCategoriaByIdController:
+
+```javascript
+const findCategoriaByIdController = async (req, res) => {
+  try {
+    const categoria = await categoriaService.findCategoriaByIdService(
+      req.params.id
+    );
+
+    if (!categoria) {
+      return res.status(404).send({
+        message: `A categoria com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    }
+
+    return res.status(200).send(categoria);
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /create
+
+| Código | Resposta                              |
+| ------ | ------------------------------------- |
+| 201    | Retorna uma nova categoria cadastrada |
+| 500    | Erro interno                          |
+
+Trecho do código do createCategoriaController:
+
+```javascript
+const createCategoriaController = async (req, res) => {
+  try {
+    return res
+      .status(201)
+      .send(await categoriaService.createCategoriaService(req.body));
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /update
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna uma nova categoria atualizada                                       |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do updateCategoriaController:
+
+```javascript
+const updateCategoriaController = async (req, res) => {
+  try {
+    const updateId = await categoriaService.updateCategoriaService(
+      req.params.id
+    );
+
+    if (updateId == null) {
+      return res.status(404).send({
+        message: `A categoria com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    } else {
+      return res
+        .status(200)
+        .send(
+          await categoriaService.updateCategoriaService(updateId, req.body)
+        );
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /remove
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna uma categoria deletada                                              |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do deleteCategoriaController:
+
+```javascript
+const deleteCategoriaController = async (req, res) => {
+  try {
+    const deletedCategoria = await categoriaService.deleteCategoriaService(
+      req.params.id
+    );
+
+    if (deletedCategoria == null) {
+      return res
+        .status(404)
+        .send({ message: `Categoria não localizada em nossa base de dados.` });
+    } else {
+      return res
+        .status(200)
+        .send({ message: `Categoria deletada com sucesso.` });
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
 ### Carrinho
+
+Rota de localização/criação/atualização/remoção do carrinho de compras cadastradas na aplicação.
+
+#### /findAll
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna todos os carrinhos cadastrados                                      |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findAllCarrinhosController:
+
+```javascript
+const findAllCarrinhosController = async (req, res) => {
+  try {
+    if ((await CarrinhoService.findAllCarrinhosService()) == "") {
+      return res
+        .status(404)
+        .send("Não há carrinhos ativos em nossa base de dados.");
+    } else {
+      return res
+        .status(200)
+        .send(await CarrinhoService.findAllCarrinhosService());
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /findById
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna um carrinho cadastrado atraves de um Id informado                   |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findCarrinhoByIdController:
+
+```javascript
+const findCarrinhoByIdController = async (req, res) => {
+  try {
+    const carrinho = await CarrinhoService.findCarrinhoByIdService(
+      req.params.id
+    );
+
+    if (!carrinho) {
+      return res.status(404).send({
+        message: `O carrinho com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    }
+
+    return res.status(200).send(carrinho);
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /create
+
+| Código | Resposta                             |
+| ------ | ------------------------------------ |
+| 201    | Retorna uma novo carrinho cadastrado |
+| 500    | Erro interno                         |
+
+Trecho do código do createCarrinhoController:
+
+```javascript
+const createCarrinhoController = async (req, res) => {
+  try {
+    const corpo = {
+      ...req.body,
+      userId: req.userId,
+    };
+    return res
+      .status(201)
+      .send(await CarrinhoService.createCarrinhoService(corpo));
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /update
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna um carrinho atualizado                                              |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do updateCarrinhoController:
+
+```javascript
+const updateCarrinhoController = async (req, res) => {
+  try {
+    const updateId = await CarrinhoService.updateCarrinhoService(req.params.id);
+
+    if (updateId == null) {
+      return res.status(404).send({
+        message: `O carrinho com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    } else {
+      return res
+        .status(200)
+        .send(await CarrinhoService.updateCarrinhoService(updateId, req.body));
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /remove
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna um carrinho deletado                                                |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do deleteCarrinhoController:
+
+```javascript
+const deleteCarrinhoController = async (req, res) => {
+  try {
+    const deletedCarrinho = await CarrinhoService.deleteCarrinhoService(
+      req.params.id
+    );
+
+    if (deletedCarrinho == null) {
+      return res.status(404).send({
+        message: `O carrinho com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    } else {
+      return res
+        .status(200)
+        .send({ message: `Carrinho deletado com sucesso.` });
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
 
 ### Pedido
 
+Rota de localização/criação/atualização/remoção dos pedidos de compras cadastradas na aplicação.
+
+#### /findAll
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna todos os pedidos cadastrados                                        |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findAllPedidosController:
+
+```javascript
+const findAllPedidosController = async (req, res) => {
+  try {
+    if ((await pedidoService.findAllPedidosService()) == "") {
+      return res
+        .status(404)
+        .send("Não há pedidos ativos em nossa base de dados.");
+    } else {
+      return res.status(200).send(await pedidoService.findAllPedidosService());
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /findById
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna um pedido cadastrado atraves de um Id informado                     |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findPedidoByIdController:
+
+```javascript
+const findPedidoByIdController = async (req, res) => {
+  try {
+    const pedido = await pedidoService.findPedidoByIdService(req.params.id);
+
+    if (!pedido) {
+      return res.status(404).send({
+        message: `O pedido com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    }
+
+    return res.status(200).send(pedido);
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /create
+
+| Código | Resposta                           |
+| ------ | ---------------------------------- |
+| 201    | Retorna uma novo pedido cadastrado |
+| 500    | Erro interno                       |
+
+Trecho do código do createPedidoController:
+
+```javascript
+const createPedidoController = async (req, res) => {
+  try {
+    const corpo = {
+      ...req.body,
+      userId: req.userId,
+    };
+    return res.status(201).send(await pedidoService.createPedidoService(corpo));
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /remove
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna um pedido deletado                                                  |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do deletePedidoController:
+
+```javascript
+const deletePedidoController = async (req, res) => {
+  try {
+    const deletedPedido = await pedidoService.deletePedidoService(
+      req.params.id
+    );
+
+    if (deletedPedido == null) {
+      return res.status(404).send({
+        message: `O pedido com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    } else {
+      return res.status(200).send({ message: `Pedido deletado com sucesso.` });
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /updateStatus
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna um pedido com o status modificado                                   |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do updateStatusPedidoController:
+
+```javascript
+const updateStatusPedidoController = async (req, res) => {
+  try {
+    const statusPedido = await pedidoService.updateStatusPedidoService(
+      req.params.id
+    );
+
+    if (statusPedido == null) {
+      return res.status(404).send({
+        message: `O pedido com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+      });
+    } else {
+      return res.status(200).send(statusPedido);
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
 ### Bebida
+
+Rota de localização/criação/atualização/remoção dos tipos de bebidas cadastrados na aplicação.
+
+#### /findAll
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna todas as bebidas cadastradas                                        |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findAllBebidasController:
+
+```javascript
+const findAllBebidasController = async (req, res) => {
+  try {
+    if ((await bebidaService.findAllBebidasService()) == "") {
+      return res
+        .status(404)
+        .send("Não há bebidas cadastradas em nossa base de dados.");
+    } else {
+      return res.status(200).send(await bebidaService.findAllBebidasService());
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /findById
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Retorna uma bebida cadastrada atraves de um Id informado                    |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do findBebidaByIdController:
+
+```javascript
+const findBebidaByIdController = async (req, res) => {
+  try {
+    const bebida = await bebidaService.findBebidaByIdService(req.params.id);
+
+    if (!bebida) {
+      return res
+        .status(404)
+        .send({ message: "Bebida não localizado em nossa base de dados." });
+    }
+
+    return res.status(200).send(bebida);
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /create
+
+| Código | Resposta                                        |
+| ------ | ----------------------------------------------- |
+| 201    | Retorna um novo tipo/sabor de bebida cadastrada |
+| 500    | Erro interno                                    |
+
+Trecho do código do createBebidaController:
+
+```javascript
+const createBebidaController = async (req, res) => {
+  try {
+    if (req.body.categorias === undefined) {
+      req.body.categorias = { default: undefined };
+    }
+
+    const corpo = {
+      ...req.body,
+      userId: req.userId,
+    };
+
+    return res.status(201).send(await bebidaService.createBebidaService(corpo));
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /update
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Atualiza um tipo/sabor de bebida cadastrada                                 |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do updateBebidaController:
+
+```javascript
+const updateBebidaController = async (req, res) => {
+  try {
+    const updateId = await bebidaService.updateBebidaService(req.params.id);
+
+    if (updateId == null) {
+      return res
+        .status(404)
+        .send({
+          message: `A bebida com o Id ${req.params.id} não foi localizado em nossa base de dados.`,
+        });
+    } else {
+      return res
+        .status(200)
+        .send(await bebidaService.updateBebidaService(updateId, req.body));
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /remove
+
+| Código | Resposta                                                                    |
+| ------ | --------------------------------------------------------------------------- |
+| 200    | Deleta um tipo/sabor de bebida cadastrada                                   |
+| 404    | Retorna uma mensagem informando que o item não se encontra na base de dados |
+| 500    | Erro interno                                                                |
+
+Trecho do código do deleteBebidaController:
+
+```javascript
+const deleteBebidaController = async (req, res) => {
+  try {
+    const deletedBebida = await bebidaService.deleteBebidaService(
+      req.params.id
+    );
+
+    if (deletedBebida == null) {
+      return res
+        .status(404)
+        .send({ message: `Bebida não localizada em nossa base de dados.` });
+    } else {
+      return res.status(200).send({ message: `Bebida deletada com sucesso.` });
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /addCategoria
+
+| Código | Resposta                                        |
+| ------ | ----------------------------------------------- |
+| 200    | Retorna uma bebida com uma categoria cadastrada |
+| 500    | Erro interno                                    |
+
+Trecho do código do addCategoriaBebidaController:
+
+```javascript
+const addCategoriaBebidaController = async (req, res) => {
+  try {
+    const categoria = await bebidaService.addCategoriaBebidaService(
+      req.params.id,
+      req.body
+    );
+    return res.status(200).send(categoria);
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
+
+#### /removeCategoria
+
+| Código | Resposta                                      |
+| ------ | --------------------------------------------- |
+| 200    | Retorna uma bebida com uma categoria deletada |
+| 500    | Erro interno                                  |
+
+Trecho do código do removeCategoriaBebidaController:
+
+```javascript
+const removeCategoriaBebidaController = async (req, res) => {
+  try {
+    const categoriaRm = await bebidaService.removeCategoriaBebidaService(
+      req.params.id,
+      req.body
+    );
+
+    let found = false;
+
+    categoriaRm.value.categorias.map((valor, chave) => {
+      if (valor._id == req.body._id) {
+        found = true;
+      }
+    });
+
+    if (found) {
+      return res
+        .status(200)
+        .send({ message: `Categoria deletada com sucesso.` });
+    } else {
+      return res
+        .status(404)
+        .send({
+          message: `Categoria não adicionada a bebida informada em nossa base de dados.`,
+        });
+    }
+  } catch (err) {
+    console.log(`erro: ${err.message}`);
+    return res
+      .status(500)
+      .send({ message: `Erro inesperado, tente novamente.` });
+  }
+};
+```
