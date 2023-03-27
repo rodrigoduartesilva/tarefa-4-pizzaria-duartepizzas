@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "environmentName": "Pizzaria-Duarte",
-    "dateExported": "2023-03-25T13:13:49.550Z",
+    "dateExported": "2023-03-27T13:02:11.175Z",
     "version": "1.0",
     "variables": [
         {
@@ -14,7 +14,7 @@
         },
         {
             "name": "token",
-            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWVkYTQ2OTEzZTBlZmUxYjNmMmFkYiIsImlhdCI6MTY3OTc0MzU3MCwiZXhwIjoxNjc5ODI5OTcwfQ.qo7R4p-_1dR2WG4eFlREP-pJp_FrRrDOQ9pIJ9v9aMw"
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWVkYTQ2OTEzZTBlZmUxYjNmMmFkYiIsImlhdCI6MTY3OTg0MDMwMywiZXhwIjoxNjc5OTI2NzAzfQ.JHHekoB-sGZf2zvTKGJTwvH_zYboTB2r5LmO4VL0VO8"
         }
     ]
 }
