@@ -13,7 +13,7 @@ Esta atividade tem como principal objetivo consolidar os conhecimentos em API e 
 
 ## Endereço Swagger
 
-URL - http://localhost:3000
+URL - http://localhost:3000/docs/api-docs
 
 ## Endpoints
 
