@@ -1,5 +1,7 @@
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors');
+
 const connectToDatabase = require('./src/database/database');//Arquivo de conexão com o databasse
 
 const usuario = require('./src/router/usuario.router');//Arquivo de rota do usuário
@@ -16,6 +18,12 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors(
+    {
+        origin: ["localhost:3001", "localhost:3002"],
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    }
+));
 
 connectToDatabase();//Função de conexão com o database
 
