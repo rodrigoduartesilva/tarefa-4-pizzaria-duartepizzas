@@ -11,6 +11,10 @@ Esta atividade tem como principal objetivo consolidar os conhecimentos em API e 
 3. execute: npm i (para realizar a instalação dos pacotes);
 4. rode usando: npm run dev (dependencia de dev - devDependecies).
 
+## Endereço Swagger
+
+URL - http://localhost:3000
+
 ## Endpoints
 
 Abaixo uma lista de todos os endpoints da aplicação:
