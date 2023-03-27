@@ -16,6 +16,52 @@
         }
     ],
     "paths": {
+        "/auth/login": {
+            "post":{
+                "summary": "Realiza o login com um usuário previamente cadastrado na API.",
+                "description": "Rota responsável por realizar login com um usuário através das informações repassadas no endpoint. O passo inicial é cadastrar um usuário na API e logo após, entrar com o email e senha desse usuário, para assim, criar um token de acesso.",
+                "tags": ["Auth"],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref":"#/components/schemas/Auth"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Retorna um objeto criado dentro do database.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/AuthRetorno"
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/usuario/findAll": {
             "get":{
                 "security": [
@@ -23,8 +69,8 @@
                         "bearerAuth":[]
                     }
                 ],
-                "summary": "Lista todos os usuários da API.",
-                "description": "Rota responsável por listar todos os usuários da API.",
+                "summary": "Lista todos os usuários cadastrados na API.",
+                "description": "Rota responsável por listar todos os usuários cadastrados da API.",
                 "tags": ["Usuario"],
                 "parameters": [
                     {
@@ -2707,6 +2753,584 @@
                     }
                 }
             }
+        },
+        "/bebida/findAll": {
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Lista todas as bebidas cadastradas na API.",
+                "description": "Rota responsável por listar todas as bebidas cadastradas na API.",
+                "tags": ["Bebida"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "name": "limit"
+                    },
+                    {
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "name": "offset"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Ok, tarefa realizada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/Bebida"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized, erro de autenticação. Verificar se há algum problema com o token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found, nenhuma bebida encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bebida/findById/{id}": {
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Lista uma bebida referente a um Id informado na API.",
+                "description": "Rota responsável por listar uma bebida que corresponde a um Id informado na API.",
+                "tags": ["Bebida"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": "true",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma bebida localizada através de um Id informado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Bebida"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized, erro de autenticação. Verificar se há algum problema com o token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found, nenhuma bebida encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        },
+        "/bebida/create": {
+            "post":{
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Cadastra um novo tipo/sabor de bebida.",
+                "description": "Rota responsável por cadastrar um novo tipo/sabor de bebida através das informações repassadas no endpoint.",
+                "tags": ["Bebida"],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref":"#/components/schemas/Bebida"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Retorna um objeto criado dentro do database.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Bebida"
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bebida/update/{id}": {
+            "put":{
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Atualiza um sabor/tipo de bebida referente a um Id informado na API.",
+                "description": "Rota responsável por atualizar um sabor/tipo de bebida que corresponde a um Id informado na API.",
+                "tags": ["Bebida"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref":"#/components/schemas/Bebida"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Retorna o objeto atualizado no database.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Bebida"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized, erro de autenticação. Verificar se há algum problema com o token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found, nenhuma bebida encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bebida/remove/{id}": {
+            "delete":{
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "remove um tipo/sabor de bebida referente a um Id informado na API.",
+                "description": "Rota responsável por remover um tipo/sabor de bebida que corresponde a um Id informado na API.",
+                "tags": ["Bebida"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": "true",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna o objeto deletado/removido no database.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Bebida"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized, erro de autenticação. Verificar se há algum problema com o token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found, nenhuma bebida encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bebida/addCategoria/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Adiciona uma categoria em uma bebida.",
+                "description": "Rota responsável por adicionar uma categoria em uma bebida informada.",
+                "tags": ["Bebida"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": "true",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "$ref":"#/components/schemas/Categoria"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Retorna uma bebida com uma categoria adicionada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Bebida"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized, erro de autenticação. Verificar se há algum problema com o token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found, nenhuma categoria encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bebida/removeCategoria/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Remove uma categoria de uma bebida.",
+                "description": "Rota responsável por remover uma categoria em uma bebida informada.",
+                "tags": ["Bebida"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": "true",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma bebida com uma categoria removida.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Bebida"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized, erro de autenticação. Verificar se há algum problema com o token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found, nenhuma categoria encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error, algum erro interno no servidor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -2877,7 +3501,7 @@
                 "type": "array",
                 "items": {
                     "properties": {
-                        "nome": {
+                        "_id": {
                             "type": "string"
                         },
                         "createdAt": {
@@ -2953,6 +3577,65 @@
                     "properties": {
                         "concluido": {
                             "type": "boolean"
+                        }
+                    }
+                }
+            },
+            "Bebida": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "precoUnitario": {
+                        "type": "number"
+                    },
+                    "imagem": {
+                        "type": "string"
+                    },
+                    "codigoBarra": {
+                        "type": "number"
+                    },
+                    "categorias": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "createdAt": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Auth": {
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "email": {
+                            "type": "string"
+                        },
+                        "senha": {
+                            "type":"string"
+                        }
+                    }
+                }
+            },
+            "AuthRetorno": {
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "email": {
+                            "type": "string"
+                        },
+                        "token": {
+                            "type": "string"
                         }
                     }
                 }
